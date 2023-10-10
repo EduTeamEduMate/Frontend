@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EduMate</string>
+    <string name="font_family">"Plus Jakarta Sans"</string>
 </resources>
