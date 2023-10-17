@@ -1,8 +1,10 @@
-package com.example.edumate;
+package com.example.edumate.views.activitites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.edumate.R;
 
 public class MainActivity extends AppCompatActivity {
 
