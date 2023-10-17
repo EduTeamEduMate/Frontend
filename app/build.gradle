@@ -1,9 +1,9 @@
-plugins {
+      plugins {
     id 'com.android.application'
 }
 
 android {
-    compileSdk 32
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.edumate"
