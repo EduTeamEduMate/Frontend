@@ -6,4 +6,6 @@
     <color name="unselected_answer">#D4D4D4</color>
     <color name="gradient_start">#3550DC</color>
     <color name="gradient_end">#27E9F7</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>
