@@ -20,6 +20,6 @@ public class IntroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_intro);
         introBtn=findViewById(R.id.options_team_btn_back);
 
-        introBtn.setOnClickListener(v -> startActivity(new Intent(IntroActivity.this, MainActivity.class)));
+        introBtn.setOnClickListener(v -> startActivity(new Intent(IntroActivity.this, OptionsActivity.class)));
     }
 }

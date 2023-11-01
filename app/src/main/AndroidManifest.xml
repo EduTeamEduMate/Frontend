@@ -36,7 +36,7 @@
             android:name=".views.activitites.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".views.activitites.MainActivity"
+            android:name=".views.activitites.OptionsActivity"
             android:exported="true"/>
     </application>
 

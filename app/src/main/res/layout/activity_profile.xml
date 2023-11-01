@@ -123,7 +123,7 @@
                             app:layout_constraintHorizontal_bias="0.571"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/team" />
+                            app:srcCompat="@drawable/username" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
@@ -158,14 +158,14 @@
 
                         <ImageView
                             android:id="@+id/options_imageView_team_subscription"
-                            android:layout_width="50sp"
-                            android:layout_height="54sp"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.571"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/team" />
+                            app:layout_constraintVertical_bias="0.888"
+                            app:srcCompat="@drawable/subscription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
@@ -192,8 +192,8 @@
                     android:orientation="horizontal">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="60sp"
-                        android:layout_height="60sp"
+                        android:layout_width="56dp"
+                        android:layout_height="55dp"
                         android:layout_gravity="center"
                         android:layout_margin="16sp"
                         android:background="@drawable/background_oval2">
@@ -207,7 +207,7 @@
                             app:layout_constraintHorizontal_bias="0.571"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/team" />
+                            app:srcCompat="@drawable/password" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
@@ -249,7 +249,7 @@
                             app:layout_constraintHorizontal_bias="0.571"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/team" />
+                            app:srcCompat="@drawable/level" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
@@ -284,14 +284,13 @@
 
                         <ImageView
                             android:id="@+id/options_imageView_team_logout_icon"
-                            android:layout_width="50sp"
-                            android:layout_height="54sp"
+                            android:layout_width="42dp"
+                            android:layout_height="38dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.571"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/team" />
+                            app:srcCompat="@drawable/logout" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView

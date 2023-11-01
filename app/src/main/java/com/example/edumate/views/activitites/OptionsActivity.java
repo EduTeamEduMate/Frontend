@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.edumate.R;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
+public class OptionsActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterTrends;
     private RecyclerView recyclerViewTrends;
 
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void profileInit() {
         LinearLayout profileBtn = findViewById(R.id.profileBtn);
-        profileBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,ProfileActivity.class)));
+        profileBtn.setOnClickListener(v -> startActivity(new Intent(OptionsActivity.this,ProfileActivity.class)));
     }
 
     private void initRecyclerView() {
