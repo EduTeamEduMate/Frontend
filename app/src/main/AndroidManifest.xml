@@ -13,7 +13,7 @@
         android:theme="@style/Theme.EduMate"
         tools:targetApi="31">
         <activity
-            android:name=".views.activitites.MainActivity"
+            android:name=".views.activitites.AuthenticationActivity"
             android:theme="@style/AppTheme"
             android:exported="true">
             <intent-filter>
