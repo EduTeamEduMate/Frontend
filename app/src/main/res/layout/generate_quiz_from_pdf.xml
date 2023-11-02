@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Back Arrow/Button -->
+    <ImageView
+        android:id="@+id/backButtonPDF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Upload Notes Title -->
+    <TextView
+        android:id="@+id/uploadTitleForPdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Upload your Notes as a PDF "
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backButtonPDF" />
+
+    <!-- Image Selection Container -->
+    <FrameLayout
+        android:id="@+id/pdfSelectContainer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/card_blue_border"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/uploadTitleForPdf">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/placeHolderpdf"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_baseline_picture_as_pdf_24" />
+
+            <TextView
+                android:id="@+id/pdfPlaceHolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Upload PDF"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+    <!-- Give your exam a title -->
+    <ImageView
+        android:id="@+id/pdfIcon"
+        android:layout_width="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_picture_as_pdf_24"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/pdfFileName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/pdfFileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/pdfIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"/>
+
+
+    <TextView
+        android:id="@+id/examTitleTextPdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Give your exam a title"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pdfIcon" />
+
+    <!-- Exam Title EditText -->
+    <EditText
+        android:id="@+id/examTitleEditTextPdf"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:hint="Name of your Quiz"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/examTitleTextPdf" />
+
+    <!-- Generate Button -->
+    <Button
+        android:id="@+id/generateButtonPdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/blue_card_blue_border"
+        android:text="Generate"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/examTitleEditTextPdf" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

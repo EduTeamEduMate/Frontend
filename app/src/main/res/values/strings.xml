@@ -10,4 +10,15 @@
     <string name="description3">By learning and increasing knowledge you will become a wise person and can change things around you and even the world</string>
     <string name="title_activity_on_boarding_screens">OnBoardingScreens</string>
 
+    
+
+    <string name="uploadPDF">Upload PDFs</string>
+    <string name="generateFromPDF">Generate exam from PDF notes</string>
+
+    <string name="uploadImg">Upload Images</string>
+    <string name="generateFromImg">Generate exam from PDF notes</string>
+
+    <string name="uploadInput">Type your notes</string>
+    <string name="generateFromInput">Generate exam from text input</string>
+
 </resources>
