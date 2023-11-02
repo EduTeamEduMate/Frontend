@@ -12,16 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EduMate"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".views.activitites.MainActivity"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-
 
         <activity
             android:name=".views.activitites.IntroActivity"
@@ -38,6 +28,26 @@
         <activity
             android:name=".views.activitites.OptionsActivity"
             android:exported="true"/>
+
+
+        <activity
+            android:name=".views.activitites.AuthenticationActivity"
+            android:theme="@style/AppTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".views.activitites.EmptyPageActivity"
+            android:theme="@style/AppTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

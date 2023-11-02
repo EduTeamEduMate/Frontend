@@ -27,18 +27,6 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-//        ArrayList<TrendsDomain> items = new ArrayList<>();
-//        items.add(new TrendsDomain("Future in AI, What will\n" +
-//                "tomorrow be like?", "The National", "trends"));
-//        items.add(new TrendsDomain("Important points in\n" +
-//                "concluding a work contract", "Reuters", "trends2"));
-//        items.add(new TrendsDomain("Future in AI, What will\n" +
-//                "tomorrow be like?", "The National", "trends"));
 
-        //recyclerViewTrends = findViewById(R.id.view1);
-        //recyclerViewTrends.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        //adapterTrends = new TrendsAdapter(items);
-        //recyclerViewTrends.setAdapter(adapterTrends);
     }
 }
