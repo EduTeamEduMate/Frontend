@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.edumate.R;
-import com.example.edumate.views.activitites.EmptyPageActivity;
+
 
 public class ChangeNameActivity extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class ChangeNameActivity extends AppCompatActivity {
             boolean isAllFieldsChecked = checkAllFields();
 
             if (isAllFieldsChecked) {
-                Intent intent = new Intent(ChangeNameActivity.this, EmptyPageActivity.class);
+                Intent intent = new Intent(ChangeNameActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
