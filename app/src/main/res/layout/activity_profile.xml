@@ -59,13 +59,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="59dp"
+                    android:layout_height="57dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/oval_background"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/profile_back_btn">
 
                     <ImageView
                         android:id="@+id/imageView5"
@@ -190,7 +191,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/profile_changePassword">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="56dp"
@@ -269,7 +271,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10sp"
                 app:cardCornerRadius="10sp"
-                app:cardElevation="3sp">
+                app:cardElevation="3sp"
+                android:id="@+id/profile_logout">
 
                 <LinearLayout
                     android:layout_width="match_parent"
