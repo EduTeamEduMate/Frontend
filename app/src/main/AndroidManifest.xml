@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.edumate">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -13,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EduMate"
         tools:targetApi="31">
-        <activity
-            android:name=".views.activitites.MainActivity"
+
+
+        <activity android:name=".views.activitites.OnBoardingScreens"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +25,60 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".views.activitites.AuthenticationActivity"
+            android:theme="@style/AppTheme"
+            android:exported="true">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".views.activitites.mainScreen.MainScreenActivity"
+            android:exported="true">
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.MAIN" />-->
+<!--            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--        </intent-filter>-->
+        </activity>
+        <activity android:name=".views.activitites.mainScreen.GenerateQuizFromImageActivity"/>
+        <activity android:name=".views.activitites.mainScreen.GenerateExamFromPdfActivity"/>
+        <activity android:name=".views.activitites.mainScreen.GenerativeQuizFromTextInputActivity"/>
+
+        <activity
+            android:name=".views.activitites.IntroActivity"
+            android:exported="true">
+
+        </activity>
+        <activity android:name=".views.activitites.ChangePasswordActivity"
+            android:exported="true">
+                            <intent-filter>
+                                <action android:name="android.intent.action.MAIN" />
+
+                                <category android:name="android.intent.category.LAUNCHER" />
+                            </intent-filter>
+        </activity>
+
+        <activity android:name=".views.activitites.OurTeam">
+
+        </activity>
+
+
+        <activity
+            android:name=".views.activitites.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activitites.OptionsActivity"
+            android:exported="true"/>
+
+        <activity android:name=".views.activitites.QuizInfoActivity"/>
+        <activity android:name=".views.activitites.quizActivities.ResultsActivity"/>
+        <activity android:name=".views.activitites.quizActivities.QuizActivity"/>
+
+
+
+
     </application>
 
 </manifest>
