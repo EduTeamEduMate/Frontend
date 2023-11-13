@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1155CC"
+    tools:context=".views.activities.quizActivities.QuizActivity">
+
+    <ImageView
+        android:id="@+id/userImageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/profile_pic"
+        android:background="@drawable/circle_shape"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/quizNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quiz Details"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"/>
+
+
+    <TextView
+        android:id="@+id/testKnowledgeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UI UX Design Quiz"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/quizNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/quizNameTextView"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/testKnowledgeTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get 100 points to pass the test"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/testKnowledgeTextView"
+        app:layout_constraintTop_toBottomOf="@+id/testKnowledgeTextView"
+        android:layout_marginTop="8dp"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/containerCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintTop_toBottomOf="@id/testKnowledgeTextView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="27dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/indicator"
+                android:layout_width="100dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/indicator_shape" />
+
+
+            <TextView
+                android:id="@+id/brief_explanation_about_this_quiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="0dp"
+                android:gravity="left"
+                android:padding="8dp"
+                android:text="@string/brief_explanation"
+                android:textColor="@color/black_shade_1"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:id="@+id/imageSelectContainer"
+                android:layout_width="56dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/brief_explanation_about_this_quiz">
+
+                <ImageView
+                    android:id="@+id/placeHolderImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/ellipse_5" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-40dp"
+                android:text="10 Questions"
+                android:textColor="#000000"
+                android:gravity="top"
+                />
+
+            <TextView
+                android:id="@+id/pointForCorrectAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:text="10 points for a correct answer"
+                android:gravity="top"
+                />
+
+            <FrameLayout
+                android:id="@+id/imageSelectContainer2"
+                android:layout_width="56dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/brief_explanation_about_this_quiz">
+
+                <ImageView
+                    android:id="@+id/placeHolderImage2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/ellipse_6" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-40dp"
+                android:text="5 minutes, 30 seconds per question"
+                android:textColor="#000000"
+                android:gravity="top"
+                />
+
+            <TextView
+                android:id="@+id/timeDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:text="Total duration of the quiz"
+                android:gravity="top"
+                />
+
+            <FrameLayout
+                android:id="@+id/imageSelectContainer3"
+                android:layout_width="56dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/brief_explanation_about_this_quiz">
+
+                <ImageView
+                    android:id="@+id/placeHolderImage3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/ellipse_7" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-40dp"
+                android:text="Win 10 stars"
+                android:textColor="#000000"
+                android:gravity="top"
+                />
+
+            <TextView
+                android:id="@+id/goalDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:text="Answer all questions correctly"
+                android:gravity="top"
+                />
+
+            <TextView
+                android:id="@+id/please_read"
+                android:layout_width="302dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/please_read"
+                android:textAppearance="@style/please_read"
+                android:gravity="top"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:id="@+id/point1"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:background="#333333"
+                />
+            <TextView
+                android:id="@+id/point1Desc"
+                android:layout_width="286dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="-15dp"
+                android:text="@string/point_award"
+                android:textAppearance="@style/point_award"
+                android:gravity="top"
+                />
+
+            <View
+                android:id="@+id/point2"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:background="#333333"
+                />
+            <TextView
+                android:id="@+id/point2Desc"
+                android:layout_width="286dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="-15dp"
+                android:text="@string/tap_on_option"
+                android:textAppearance="@style/tap_on_option"
+                android:gravity="top"
+                />
+
+            <View
+                android:id="@+id/point3"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:background="#333333"
+                />
+            <TextView
+                android:id="@+id/point3Desc"
+                android:layout_width="286dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="-15dp"
+                android:text="@string/click_submit"
+                android:textAppearance="@style/click_submit"
+                android:gravity="top"
+                />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:background="@drawable/btn_background"
+        android:text="Start Quiz"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.627"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.636" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

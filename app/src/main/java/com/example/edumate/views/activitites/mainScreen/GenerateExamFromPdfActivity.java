@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.edumate.R;
+import com.example.edumate.views.activitites.QuizInfoActivity;
 
 public class GenerateExamFromPdfActivity extends Activity {
 
@@ -32,9 +33,8 @@ public class GenerateExamFromPdfActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.generate_quiz_from_pdf); // Make sure the XML file is named "activity_upload_notes.xml"
+        setContentView(R.layout.generate_quiz_from_pdf);
 
-        // Initialize Views
         backButtonPDF = findViewById(R.id.backButtonPDF);
         placeHolderpdf = findViewById(R.id.pdfSelectContainer);
         generateButton = findViewById(R.id.generateButtonPdf);
@@ -43,11 +43,10 @@ public class GenerateExamFromPdfActivity extends Activity {
         pdfIcon = findViewById(R.id.pdfIcon);
         pdfFileName = findViewById(R.id.pdfFileName);
 
-        // Set onClick listeners
         backButtonPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish(); // Closes the activity and returns to the previous one
+                finish();
             }
         });
 
@@ -69,7 +68,8 @@ public class GenerateExamFromPdfActivity extends Activity {
             public void onClick(View v) {
                 String title = examTitleEditTextPdf.getText().toString().trim();
                 if (!title.isEmpty()) {
-                    // Code to generate or process the given title
+                    Intent generateExam = new Intent(GenerateExamFromPdfActivity.this, QuizInfoActivity.class);
+                    startActivity(generateExam);
                 } else {
                     Toast.makeText(GenerateExamFromPdfActivity.this, "Please enter a title for your quiz.", Toast.LENGTH_SHORT).show();
                 }
@@ -100,7 +100,6 @@ public class GenerateExamFromPdfActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_PDF_FILE && resultCode == Activity.RESULT_OK) {
             if (data != null) {
-                // Get the Uri of the selected file
                 Uri uri = data.getData();
                 pdfIcon.setVisibility(View.VISIBLE);
                 pdfFileName.setVisibility(View.VISIBLE);

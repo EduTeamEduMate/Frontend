@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import com.example.edumate.R;
-import com.example.edumate.views.activitites.EmptyPageActivity;
 import com.example.edumate.views.activitites.IntroActivity;
 import com.example.edumate.views.activitites.OnBoardingKt;
+import com.example.edumate.views.activitites.mainScreen.MainScreenActivity;
 
 public class LoginTabFragment extends Fragment {
 
@@ -30,7 +30,7 @@ public class LoginTabFragment extends Fragment {
             boolean isAllFieldsChecked = CheckAllFields();
 
             if (isAllFieldsChecked) {
-                Intent intent = new Intent(getActivity(), IntroActivity.class);
+                Intent intent = new Intent(getActivity(), MainScreenActivity.class);
                 startActivity(intent);
             }
         });

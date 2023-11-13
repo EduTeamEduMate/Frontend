@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import com.example.edumate.R;
+import com.example.edumate.views.activitites.QuizInfoActivity;
 
 public class GenerateQuizFromImageActivity extends Activity {
 
@@ -68,7 +69,8 @@ public class GenerateQuizFromImageActivity extends Activity {
             public void onClick(View v) {
                 String title = examTitleEditText.getText().toString().trim();
                 if (!title.isEmpty()) {
-                    // Code to generate or process the given title
+                    Intent generateExam = new Intent(GenerateQuizFromImageActivity.this, QuizInfoActivity.class);
+                    startActivity(generateExam);
                 } else {
                     Toast.makeText(GenerateQuizFromImageActivity.this, "Please enter a title for your quiz.", Toast.LENGTH_SHORT).show();
                 }
