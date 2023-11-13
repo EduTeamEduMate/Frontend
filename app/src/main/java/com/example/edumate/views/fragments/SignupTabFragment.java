@@ -1,5 +1,6 @@
 package com.example.edumate.views.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +10,10 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.edumate.R;
-import com.example.edumate.views.activitites.EmptyPageActivity;
 
 public class SignupTabFragment extends Fragment {
 
@@ -22,6 +23,15 @@ public class SignupTabFragment extends Fragment {
 
     public interface OnSignupInteractionListener {
         void onNavigateToLogin();
+    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnSignupInteractionListener) {
+            listener = (OnSignupInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnSignupInteractionListener");
+        }
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,9 +58,7 @@ public class SignupTabFragment extends Fragment {
             boolean isAllFieldsChecked = CheckAllFields();
 
             if (isAllFieldsChecked) {
-                // Navigate to the empty page (EmptyPageActivity)
-                Intent intent = new Intent(getActivity(), EmptyPageActivity.class);
-                startActivity(intent);
+                listener.onNavigateToLogin();
             }
         });
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="rectangle_4" type="id" />
+    <item name="textViewQuestionNumber" type="id" />
+    <item name="textViewQuestionText" type="id" />
+    <item name="quizName" type="id" />
+    <item name="timerTextView" type="id" />
+    <item name="tabLayout" type="id" />
+    <item name="viewPager" type="id" />
+    <item name="leftNavButton" type="id" />
+    <item name="rightNavButton" type="id" />
+    <item name="answerOne" type="id" />
+    <item name="answerTwo" type="id" />
+    <item name="answerThree" type="id" />
+    <item name="answerFour" type="id" />
+    <item name="answerFive" type="id" />
+    <item name="buttonGroup" type="id" />
+    <item name="leftRightAndSubmitGroup" type="id" />
+    <item name="questionTextView" type="id" />
+    <item name="startQuizButton" type="id" />
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <vector
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        android:width="375dp"
+        android:height="668dp"
+        android:viewportWidth="375"
+        android:viewportHeight="668"
+        >
+        <group>
+            <clip-path
+                android:pathData="M32 0H343C360.673 0 375 14.3269 375 32V636C375 653.673 360.673 668 343 668H32C14.3269 668 0 653.673 0 636V32C0 14.3269 14.3269 0 32 0Z"
+                />
+            <path
+                android:pathData="M0 0V668H375V0"
+                android:fillColor="#FFFFFF"
+                />
+        </group>
+    </vector>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

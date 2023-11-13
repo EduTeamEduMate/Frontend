@@ -74,17 +74,12 @@
             android:name=".views.activitites.OptionsActivity"
             android:exported="true"/>
 
+        <activity android:name=".views.activitites.QuizInfoActivity"/>
+        <activity android:name=".views.activitites.quizActivities.ResultsActivity"/>
+        <activity android:name=".views.activitites.quizActivities.QuizActivity"/>
 
 
-<!--        <activity-->
-<!--            android:name=".views.activitites.EmptyPageActivity"-->
-<!--            android:theme="@style/AppTheme"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+
 
     </application>
 
