@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.edumate.R;
+import com.example.edumate.views.activitites.mainScreen.MainScreenActivity;
 
 public class OptionsActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterTrends;
@@ -31,6 +32,9 @@ public class OptionsActivity extends AppCompatActivity {
 
         LinearLayout ourTeam = findViewById(R.id.options_our_team);
         ourTeam.setOnClickListener(v -> startActivity(new Intent(this,OurTeam.class)));
+
+        LinearLayout homebtn = findViewById(R.id.options_homebtn);
+        homebtn.setOnClickListener(v -> startActivity(new Intent(this, MainScreenActivity.class)));
 
 
     }
