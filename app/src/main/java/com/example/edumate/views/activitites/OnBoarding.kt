@@ -33,18 +33,22 @@ import androidx.compose.ui.unit.sp
 import com.example.edumate.R
 import kotlinx.coroutines.launch
 
+import android.content.Context
+import android.content.Intent
+import androidx.compose.ui.platform.LocalContext
+
 
 @OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
 @Composable
 fun OnBoarding() {
+    val context = LocalContext.current
     val items = OnBoardingItems.getData()
     val scope = rememberCoroutineScope()
     val pageState = rememberPagerState(
         initialPage = 0,
         initialPageOffsetFraction = 0f
     ) {
-        // provide pageCount
         items.size
     }
 
@@ -70,11 +74,17 @@ fun OnBoarding() {
         ) { page ->
             OnBoardingItem(items = items[page])
         }
-        BottomSection(size = items.size, index = pageState.currentPage) {
-            if (pageState.currentPage + 1 < items.size) scope.launch {
-                pageState.scrollToPage(pageState.currentPage + 1)
+        BottomSection(size = items.size, index = pageState.currentPage,
+            onLastPageClick = {
+                val intent = Intent(context, AuthenticationActivity::class.java)
+                context.startActivity(intent)
+            },
+            onNextPageClick = {
+                if (pageState.currentPage + 1 < items.size) scope.launch {
+                    pageState.scrollToPage(pageState.currentPage + 1)
+                }
             }
-        }
+        )
     }
 }
 
@@ -85,12 +95,10 @@ fun TopSection(onBackClick: () -> Unit = {}, onSkipClick: () -> Unit = {}) {
             .fillMaxWidth()
             .padding(12.dp)
     ) {
-        // Back button
         IconButton(onClick = onBackClick, modifier = Modifier.align(Alignment.CenterStart)) {
             Icon(imageVector = Icons.Outlined.KeyboardArrowLeft, contentDescription = null)
         }
 
-        // Skip Button
         TextButton(
             onClick = onSkipClick,
             modifier = Modifier.align(Alignment.CenterEnd),
@@ -102,26 +110,19 @@ fun TopSection(onBackClick: () -> Unit = {}, onSkipClick: () -> Unit = {}) {
 }
 
 @Composable
-fun BottomSection(size: Int, index: Int, onButtonClick: () -> Unit = {}) {
+fun BottomSection(size: Int, index: Int, onLastPageClick: () -> Unit, onNextPageClick: () -> Unit = {}) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
     ) {
-        // Indicators
         Indicators(size, index)
 
-        // FAB Next
-         FloatingActionButton(
-             onClick = onButtonClick,
-             contentColor = MaterialTheme.colorScheme.onPrimary,
-             modifier = Modifier.align(Alignment.CenterEnd)
-         ) {
-             Icon(imageVector = Icons.Outlined.KeyboardArrowRight, contentDescription = "Next")
-         }
+        val isLastPage = index == size - 1
+
 
         FloatingActionButton(
-            onClick = onButtonClick,
+           onClick = { if (isLastPage) onLastPageClick() else onNextPageClick() },
             containerColor = Color.Black,
             modifier = Modifier
                 .align(Alignment.CenterEnd)

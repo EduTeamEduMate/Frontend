@@ -7,13 +7,22 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 
 import com.example.edumate.R;
+import com.example.edumate.views.adapters.ViewPagerAdapter;
+import com.example.edumate.views.fragments.SignupTabFragment;
 import com.google.android.material.tabs.TabLayout;
 
-public class AuthenticationActivity extends AppCompatActivity {
+public class AuthenticationActivity extends AppCompatActivity
+        implements SignupTabFragment.OnSignupInteractionListener {
 
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
     private com.example.edumate.views.adapters.ViewPagerAdapter adapter;
+
+
+    @Override
+    public void onNavigateToLogin() {
+        viewPager2.setCurrentItem(0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +36,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Signup"));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        adapter = new com.example.edumate.views.adapters.ViewPagerAdapter(fragmentManager, getLifecycle());
+        adapter = new ViewPagerAdapter(fragmentManager, getLifecycle());
         viewPager2.setAdapter(adapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

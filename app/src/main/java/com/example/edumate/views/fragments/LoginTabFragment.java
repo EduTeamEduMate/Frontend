@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.example.edumate.R;
 import com.example.edumate.views.activitites.EmptyPageActivity;
+import com.example.edumate.views.activitites.IntroActivity;
+import com.example.edumate.views.activitites.OnBoardingKt;
 
 public class LoginTabFragment extends Fragment {
 
@@ -28,8 +30,7 @@ public class LoginTabFragment extends Fragment {
             boolean isAllFieldsChecked = CheckAllFields();
 
             if (isAllFieldsChecked) {
-                // Navigate to the empty page (EmptyPageActivity)
-                Intent intent = new Intent(getActivity(), EmptyPageActivity.class);
+                Intent intent = new Intent(getActivity(), IntroActivity.class);
                 startActivity(intent);
             }
         });
