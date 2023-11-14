@@ -3,9 +3,13 @@ package com.example.edumate.views.activitites.mainScreen;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.edumate.R;
+import com.example.edumate.views.activitites.OptionsActivity;
 import com.example.edumate.views.adapters.TabsAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -23,7 +27,8 @@ public class MainScreenActivity extends AppCompatActivity {
         TabsAdapter tabsAdapter = new TabsAdapter(this);
         viewPager.setAdapter(tabsAdapter);
 
-        // Connect TabLayout with ViewPager2
+
+
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
                     switch (position) {
@@ -36,6 +41,17 @@ public class MainScreenActivity extends AppCompatActivity {
                     }
                 });
         tabLayoutMediator.attach();
+
+        LinearLayout goToOptionsScreen = findViewById(R.id.goToOptionsScreen);
+
+        goToOptionsScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainScreenActivity.this, OptionsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
 }

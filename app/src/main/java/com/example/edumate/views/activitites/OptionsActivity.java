@@ -33,7 +33,7 @@ public class OptionsActivity extends AppCompatActivity {
         LinearLayout ourTeam = findViewById(R.id.options_our_team);
         ourTeam.setOnClickListener(v -> startActivity(new Intent(this,OurTeam.class)));
 
-        LinearLayout homebtn = findViewById(R.id.options_homebtn);
+        LinearLayout homebtn = findViewById(R.id.goToMainScreen);
         homebtn.setOnClickListener(v -> startActivity(new Intent(this, MainScreenActivity.class)));
 
 

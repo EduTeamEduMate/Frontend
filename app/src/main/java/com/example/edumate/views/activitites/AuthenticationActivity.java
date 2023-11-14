@@ -11,6 +11,8 @@ import com.example.edumate.views.adapters.ViewPagerAdapter;
 import com.example.edumate.views.fragments.SignupTabFragment;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Objects;
+
 public class AuthenticationActivity extends AppCompatActivity
         implements SignupTabFragment.OnSignupInteractionListener {
 
@@ -28,6 +30,8 @@ public class AuthenticationActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.authentication_activity);
+
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         tabLayout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.view_pager);
