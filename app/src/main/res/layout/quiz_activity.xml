@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1155CC"
-    tools:context=".views.activities.quizActivities.QuizActivity">
+    tools:context=".views.activitites.quizActivities.QuizActivity">
 
     <ImageView
         android:id="@+id/userImageView"
@@ -54,7 +54,7 @@
         android:layout_marginTop="8dp"/>
 
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:id="@+id/containerCardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -66,8 +66,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:cardCornerRadius="27dp"
-        app:cardBackgroundColor="@android:color/white">
+        android:background="@drawable/top_rounded_shape">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -287,7 +286,7 @@
         </LinearLayout>
 
 
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/startButton"

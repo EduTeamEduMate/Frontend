@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1155CC"
-    tools:context=".views.activities.quizActivities.QuizActivity">
+    tools:context=".views.activitites.quizActivities.QuizActivity">
 
     <TextView
         android:id="@+id/quizName"
@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:id="@+id/containerCardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -43,8 +43,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="27dp"
+
+        android:background="@drawable/top_rounded_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,8 +67,8 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,57 +79,62 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="503dp"
                 app:layout_constraintBottom_toTopOf="@id/leftRightAndSubmitGroup"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tabLayout" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/leftRightAndSubmitGroup"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:padding="15dp">
 
-    <Button
-        android:id="@+id/leftNavButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="Previous"
-        app:layout_constraintBottom_toBottomOf="@id/submitButton"
-        app:layout_constraintEnd_toStartOf="@id/submitButton"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/leftNavButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Previous"
+            app:layout_constraintBottom_toBottomOf="@id/submitButton"
+            app:layout_constraintEnd_toStartOf="@id/submitButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/submitButton" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/submitButton"
-        style="@android:style/Widget.Button"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="32dp"
-        android:background="@drawable/btn_background"
-        android:text="Submit Quiz"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/submitButton"
+            style="@android:style/Widget.Button"
+            android:layout_width="150dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_background"
+            android:text="Submit Quiz"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/rightNavButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Next"
-        app:layout_constraintBottom_toBottomOf="@id/submitButton"
-        app:layout_constraintStart_toEndOf="@id/submitButton"
-        app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:id="@+id/rightNavButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            app:layout_constraintBottom_toBottomOf="@id/submitButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/submitButton"
+            app:layout_constraintTop_toTopOf="@+id/submitButton"
+            app:layout_constraintVertical_bias="0.0" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

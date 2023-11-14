@@ -15,6 +15,7 @@ import java.util.List;
 
 
 import com.example.edumate.views.activitites.QuizInfoActivity;
+import com.example.edumate.views.activitites.mainScreen.MainScreenActivity;
 import com.example.edumate.views.adapters.ResultAdapter;
 import java.util.ArrayList;
 
@@ -47,6 +48,12 @@ public class ResultsActivity extends AppCompatActivity {
                 navigateBackToQuizStart();
             }
         });
+        btnBackToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateBackToHome();
+            }
+        });
     }
 
     private void navigateBackToQuizStart() {
@@ -54,6 +61,12 @@ public class ResultsActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    private void navigateBackToHome() {
+        Intent intent = new Intent(this, MainScreenActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 
     private List<QuizResult> getQuizResults() {
