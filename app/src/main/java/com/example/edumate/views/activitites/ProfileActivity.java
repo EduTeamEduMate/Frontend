@@ -3,8 +3,11 @@ package com.example.edumate.views.activitites;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.edumate.R;
+import com.example.edumate.models.SUserData;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -16,6 +19,12 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        TextView name = findViewById(R.id.textView4);
+        name.setText(SUserData.getInstance().getUsername());
+
+        TextView email = findViewById(R.id.textView5);
+        email.setText(SUserData.getInstance().getEmail());
 
         LinearLayout userName = findViewById(R.id.profile_username);
         userName.setOnClickListener(v -> startActivity(new Intent(this, ChangeNameActivity.class)));

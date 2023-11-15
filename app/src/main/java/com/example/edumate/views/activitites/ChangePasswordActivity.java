@@ -1,10 +1,19 @@
 package com.example.edumate.views.activitites;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.edumate.R;
+import com.example.edumate.models.SUserData;
+import com.example.edumate.models.User;
+import com.example.edumate.network.ApiService;
+import com.example.edumate.network.RetrofitClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
@@ -25,11 +34,33 @@ public class ChangePasswordActivity extends AppCompatActivity {
             boolean isAllFieldsChecked = checkAllFields();
 
             if (isAllFieldsChecked) {
-                // Add logic to change the password
-                // For demonstration purposes, navigating to EmptyPageActivity
-                // Replace with your logic for changing the password
-                // Intent intent = new Intent(ChangePasswordActivity.this, EmptyPageActivity.class);
-                // startActivity(intent);
+                String newPassword = newPasswordEditText.getText().toString().trim();
+                int userId = SUserData.getInstance().getId(); // Get user ID from stored user data
+
+                User updatedUser = new User();
+                updatedUser.setName(SUserData.getInstance().getUsername());
+                updatedUser.setEmail(SUserData.getInstance().getEmail());
+                updatedUser.setPassword(newPassword);
+
+                ApiService apiService = RetrofitClient.getApiService();
+                Call<User> call = apiService.updateUserPassword(userId, updatedUser);
+
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if (response.isSuccessful()) {
+                            Intent intent = new Intent(ChangePasswordActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                        } else {
+                            newPasswordEditText.setText("fail 1");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        newPasswordEditText.setText("fail 2");
+                    }
+                });
             }
         });
     }

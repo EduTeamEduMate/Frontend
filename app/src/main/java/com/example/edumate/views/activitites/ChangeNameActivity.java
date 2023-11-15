@@ -6,6 +6,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.edumate.R;
+import com.example.edumate.models.SUserData;
+import com.example.edumate.models.User;
+import com.example.edumate.network.ApiService;
+import com.example.edumate.network.RetrofitClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ChangeNameActivity extends AppCompatActivity {
@@ -26,8 +34,33 @@ public class ChangeNameActivity extends AppCompatActivity {
             boolean isAllFieldsChecked = checkAllFields();
 
             if (isAllFieldsChecked) {
-                Intent intent = new Intent(ChangeNameActivity.this, ProfileActivity.class);
-                startActivity(intent);
+                String newName = newNameEditText.getText().toString().trim();
+                int userId = SUserData.getInstance().getId(); // Get user ID from stored user data
+
+                User updatedUser = new User();
+                updatedUser.setName(newName);
+                updatedUser.setEmail(SUserData.getInstance().getEmail());
+
+                ApiService apiService = RetrofitClient.getApiService();
+                Call<User> call = apiService.updateUser(userId, updatedUser);
+
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if (response.isSuccessful()) {
+                            SUserData.getInstance().setUser(newName,SUserData.getInstance().getEmail(), SUserData.getInstance().getId());
+                            Intent intent = new Intent(ChangeNameActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                        } else {
+                            newNameEditText.setText("fail 1");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        newNameEditText.setText("fail 2");
+                    }
+                });
             }
         });
     }

@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.edumate.R;
+import com.example.edumate.models.SUserData;
 import com.example.edumate.views.activitites.OptionsActivity;
 import com.example.edumate.views.adapters.TabsAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -20,6 +22,9 @@ public class MainScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen_activity);
+
+        TextView name = findViewById(R.id.greetingTextView);
+        name.setText("Hello, "+ SUserData.getInstance().getUsername());
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
