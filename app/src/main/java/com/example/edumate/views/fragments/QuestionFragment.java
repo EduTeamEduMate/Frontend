@@ -26,13 +26,13 @@ public class QuestionFragment extends Fragment {
     private int questionNumber;
 
     public interface OnAnswerSelectedListener {
-        void onAnswerSelected(int questionNumber, int selectedAnswerIndex);
+        void onAnswerSelected(int questionNumber, String selectedAnswer);
     }
 
 
-    private void answerSelected(int selectedAnswerIndex) {
+    private void answerSelected(String selectedAnswer) {
         if (answerSelectedListener != null) {
-            answerSelectedListener.onAnswerSelected(questionNumber, selectedAnswerIndex);
+            answerSelectedListener.onAnswerSelected(questionNumber, selectedAnswer);
         }
     }
 
@@ -95,11 +95,13 @@ public class QuestionFragment extends Fragment {
             radioGroupAnswers.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    int selectedAnswerIndex = group.indexOfChild(view.findViewById(checkedId));
-                    if (mListener != null) {
-                        mListener.onAnswerSelected(questionNumber, selectedAnswerIndex);
+                    RadioButton selectedButton = group.findViewById(checkedId);
+                    if (selectedButton != null && mListener != null) {
+                        String selectedAnswerText = selectedButton.getText().toString();
+                        mListener.onAnswerSelected(questionNumber, selectedAnswerText);
                     }
                 }
+
             });
 
             for (int i = 0; i < answers.size(); i++) {

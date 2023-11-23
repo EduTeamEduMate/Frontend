@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.edumate.R;
+import com.example.edumate.models.ExamData;
+import com.example.edumate.models.Question;
 import com.example.edumate.views.adapters.QuestionsTabAdapter;
 import com.example.edumate.views.fragments.QuestionFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -18,14 +20,17 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity implements QuestionFragment.OnAnswerSelectedListener{
+
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
     private ViewPager2 viewPager;
     private QuestionsTabAdapter adapter;
-    private int[] userAnswers = new int[10];
+    private List<Question> questions;
+    private String[] userAnswers;
     private boolean[] answersSelected;
     private Button submitButton;
 
@@ -33,17 +38,47 @@ public class QuizActivity extends AppCompatActivity implements QuestionFragment.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.questions_activity);
+
+        initializeViews();
+        receiveAndSetupExamData();
+        setupButtonListeners();
+        startTimer(300000); // 5 minutes timer
+    }
+
+    private void initializeViews() {
         timerTextView = findViewById(R.id.timerTextView);
         viewPager = findViewById(R.id.viewPager);
+        submitButton = findViewById(R.id.submitButton);
+//        submitButton.setEnabled(false);
+    }
+
+    private void receiveAndSetupExamData() {
+        ExamData examData = (ExamData) getIntent().getSerializableExtra("EXAM_DATA");
+        if (examData != null) {
+            this.questions = examData.getQuestions();
+            userAnswers = new String[questions.size()];
+            Arrays.fill(userAnswers, null);
+            answersSelected = new boolean[questions.size()];
+            setupViewPagerAndViewPagerTabs();
+        } else {
+            // Handle error: Exam data is missing
+        }
+    }
+    private void setupViewPagerAndViewPagerTabs() {
+        adapter = new QuestionsTabAdapter(this, questions);
+        viewPager.setAdapter(adapter);
+
         TabLayout tabLayout = findViewById(R.id.tabLayout);
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> tab.setText("Question " + (position + 1))).attach();
+    }
+
+    private void setupButtonListeners() {
         Button leftNavButton = findViewById(R.id.leftNavButton);
         Button rightNavButton = findViewById(R.id.rightNavButton);
-
-        answersSelected = new boolean[10];
-        Arrays.fill(answersSelected, false);
-
+        setupButtonListeners(leftNavButton, rightNavButton);
+        // Implement navigation button listeners
+        // Implement submit button listener
         submitButton = findViewById(R.id.submitButton);
-        submitButton.setEnabled(false);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,26 +92,15 @@ public class QuizActivity extends AppCompatActivity implements QuestionFragment.
                 intent.putStringArrayListExtra("correctAnswers", correctAnswers);
 
                 startActivity(intent);
+                finish();
             }
         });
-
-        adapter = new QuestionsTabAdapter(this);
-        viewPager.setAdapter(adapter);
-
-        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            tab.setText("Question " + (position + 1));
-        }).attach();
-
-        Arrays.fill(userAnswers, -1);
-
-        setupButtonListeners(leftNavButton, rightNavButton);
-        startTimer(300000);
     }
 
 
     @Override
-    public void onAnswerSelected(int questionNumber, int selectedAnswerIndex) {
-        userAnswers[questionNumber - 1] = selectedAnswerIndex;
+    public void onAnswerSelected(int questionNumber, String selectedAnswer) {
+        userAnswers[questionNumber - 1] = selectedAnswer;
         answersSelected[questionNumber - 1] = true;
         updateSubmitButtonState();
     }
@@ -96,7 +120,7 @@ public class QuizActivity extends AppCompatActivity implements QuestionFragment.
             }
         });
     }
-
+//
     private void startTimer(long timeLeftInMillis) {
         countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
             @Override
@@ -123,31 +147,20 @@ public class QuizActivity extends AppCompatActivity implements QuestionFragment.
         }
     }
 
-    private boolean areAllQuestionsAnswered() {
-        for (int answer : userAnswers) {
-            if (answer == -1) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     private void updateSubmitButtonState() {
-        for (boolean isSelected : answersSelected) {
-            if (!isSelected) {
-                submitButton.setEnabled(false);
+        for (String answer : userAnswers) {
+            if (answer == null) {
+                submitButton.setVisibility(View.GONE); // Hide button if any question is unanswered
                 return;
             }
         }
-        submitButton.setEnabled(true);
+        submitButton.setVisibility(View.VISIBLE); // Show button if all questions are answered
     }
 
+
     private ArrayList<String> getSelectedAnswers() {
-        ArrayList<String> selectedAnswers = new ArrayList<>();
-        for (int answer : userAnswers) {
-            selectedAnswers.add(answer == -1 ? null : String.valueOf(answer));
-        }
-        return selectedAnswers;
+        return new ArrayList<>(Arrays.asList(userAnswers));
     }
 
 
@@ -155,9 +168,8 @@ public class QuizActivity extends AppCompatActivity implements QuestionFragment.
     private ArrayList<String> getCorrectAnswers() {
         ArrayList<String> correctAnswers = new ArrayList<>();
 
-        for (int i = 0; i < adapter.getItemCount(); i++) {
-            String correctAnswer = "Correct Answer for Question " + (i + 1);
-            correctAnswers.add(correctAnswer);
+        for (Question question : questions) {
+            correctAnswers.add(question.getCorrectAnswer());
         }
 
         return correctAnswers;

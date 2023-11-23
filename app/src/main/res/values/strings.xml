@@ -10,7 +10,6 @@
     <string name="description3">By learning and increasing knowledge you will become a wise person and can change things around you and even the world</string>
     <string name="title_activity_on_boarding_screens">OnBoardingScreens</string>
 
-    
 
     <string name="uploadPDF">Upload PDFs</string>
     <string name="generateFromPDF">Generate exam from PDF notes</string>
@@ -21,40 +20,40 @@
     <string name="uploadInput">Type your notes</string>
     <string name="generateFromInput">Generate exam from text input</string>
 
-        <string name="ui_ux_design">
+    <string name="ui_ux_design">
         UI UX Design Quiz
     </string>
 
-        <string name="ui_ux_desig">
+    <string name="ui_ux_desig">
         UI UX Design Quiz
     </string>
 
-        <string name="get_100_poi">
+    <string name="get_100_poi">
         GET 100 Points
     </string>
 
-        <string name="brief_explanation">
+    <string name="brief_explanation">
         Brief explanation about this quiz
     </string>
 
-        <string name="please_read">
+    <string name="please_read">
                 Please read the text below carefully so you can understand it
     </string>
 
-        <string name="point_award">
+    <string name="point_award">
                 10 points awarded for a correct answer and no marks for an incorrect answer
     </string>
 
-        <string name="tap_on_option">
+    <string name="tap_on_option">
                 Tap on option to select the correct answer
     </string>
 
-        <string name="click_submit">
+    <string name="click_submit">
                 Click submit if you are sure you want to complete all the quizzes
     </string>
 
-        <string name="section_format">Tab %1$d</string>
+    <string name="section_format">Tab %1$d</string>
 
-        <string name="question_number">Question %1$d</string>
+    <string name="question_number">Question %1$d</string>
 
 </resources>

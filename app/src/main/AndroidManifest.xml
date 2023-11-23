@@ -79,6 +79,7 @@
         <activity android:name=".views.activitites.QuizInfoActivity" />
         <activity android:name=".views.activitites.quizActivities.ResultsActivity" />
         <activity android:name=".views.activitites.quizActivities.QuizActivity" />
+        <activity android:name=".views.activitites.LoadingActivity"/>
     </application>
 
 </manifest>

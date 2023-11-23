@@ -1,19 +1,20 @@
 package com.example.edumate.models;
 
 public class HistoryCard {
-    private String title;
-    private String description;
+    private String name;
+    private int id;
 
-    public HistoryCard(String title, String description) {
-        this.title = title;
-        this.description = description;
+    public HistoryCard(String name, int id) {
+        this.name = name;
+        this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public String getDescription() {
-        return description;
+    public int getId() {
+        return id;
     }
+
 }

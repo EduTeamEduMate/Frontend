@@ -24,6 +24,39 @@
             android:text="Quiz Results"
             android:textSize="24sp" />
 
+        <TextView
+            android:id="@+id/scoreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="res"
+            android:textSize="24sp"/>
+        <TextView
+            android:id="@+id/feedbackTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp" />
+
+        <View
+            android:id="@+id/sep"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/tvWrongAnswersHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wrong Answers"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_horizontal"
+            android:textColor="#FF0000"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvQuizResults"
             android:layout_width="match_parent"
@@ -31,24 +64,7 @@
             android:layout_weight="1"
             android:scrollbars="vertical" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnTryAgain"
-            style="@android:style/Widget.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/btn_background"
-            android:text="Try Again"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnBackToHome"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvQuizResults"
-            app:layout_constraintVertical_bias="1.0" />
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBackToHome"
@@ -62,7 +78,6 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btnTryAgain"
             app:layout_constraintTop_toBottomOf="@id/rvQuizResults" />
 
     </LinearLayout>

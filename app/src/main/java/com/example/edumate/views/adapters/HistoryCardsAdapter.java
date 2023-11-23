@@ -18,8 +18,15 @@ import java.util.List;
 public class HistoryCardsAdapter extends RecyclerView.Adapter<HistoryCardsAdapter.CardViewHolder> {
     private List<HistoryCard> cardList;
 
-    public HistoryCardsAdapter(List<HistoryCard> cardList) {
+    private OnHistoryCardClickListener clickListener;
+
+    public interface OnHistoryCardClickListener {
+        void onCardClick(int examId);
+    }
+
+    public HistoryCardsAdapter(List<HistoryCard> cardList, OnHistoryCardClickListener clickListener) {
         this.cardList = cardList;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -33,9 +40,14 @@ public class HistoryCardsAdapter extends RecyclerView.Adapter<HistoryCardsAdapte
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         HistoryCard currentCard = cardList.get(position);
-        holder.titleTextView.setText(currentCard.getTitle());
-        holder.descriptionTextView.setText(currentCard.getDescription());
+        holder.titleTextView.setText(currentCard.getName());
         holder.imageView.setImageResource(R.drawable.exam_icon);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.onCardClick(currentCard.getId());
+            }
+        });
     }
 
     @Override
@@ -45,14 +57,12 @@ public class HistoryCardsAdapter extends RecyclerView.Adapter<HistoryCardsAdapte
 
     static class CardViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
-        TextView descriptionTextView;
         ImageView imageView;
 
         public CardViewHolder(View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
-            descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
-            imageView = itemView.findViewById(R.id.imageView); // Initialize the ImageView
+            imageView = itemView.findViewById(R.id.imageView);
         }
     }
 
