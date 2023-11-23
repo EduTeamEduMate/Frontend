@@ -3,6 +3,7 @@ package com.example.edumate.views.activitites.mainScreen;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,16 +19,21 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.edumate.R;
+import com.example.edumate.models.ExamData;
+import com.example.edumate.models.Question;
+import com.example.edumate.views.activitites.GeneratingExamLoader;
 import com.example.edumate.views.activitites.QuizInfoActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-
+import java.util.stream.Collectors;
 
 
 public class GenerativeQuizFromTextInputActivity extends Activity {
@@ -36,7 +42,6 @@ public class GenerativeQuizFromTextInputActivity extends Activity {
     private EditText additionalTextInput;
     private Button generateButtonTextInput;
     private EditText examTitleEditTextInput;
-    private static final String URL_ENDPOINT = "https://api.openai.com/v1/chat/completions";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,97 +66,64 @@ public class GenerativeQuizFromTextInputActivity extends Activity {
         generateButtonTextInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                String title = examTitleEditTextInput.getText().toString().trim();
-//                String textInput = additionalTextInput.getText().toString().trim();
-//                if (title.isEmpty() || textInput.isEmpty()) {
-//                    Toast.makeText(GenerativeQuizFromTextInputActivity.this, "Please enter a title for your quiz.", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Intent generateExam = new Intent(GenerativeQuizFromTextInputActivity.this, QuizInfoActivity.class);
-//                    startActivity(generateExam);
-//                }
-                chatGPT(v);
-            }
+                String title = examTitleEditTextInput.getText().toString().trim();
+                String textInput = additionalTextInput.getText().toString().trim();
 
-
-
-
-
-        });
-    }
-    public void chatGPT(View view) {
-        EditText editText = findViewById(R.id.additionalTextInput);
-        String prompt = editText.getText().toString();
-        prompt += "write 10 mcq question from the following text given these constrainlts:[" +
-                "there are 4 choices a,b,c,d; the correct choice is laways the first choice;" +
-                " All questions start with (What, Which, In the, how) and ends with ?; there are 10 mcq questions."+
-                " as a single string with newline characters separating the lines]" + prompt;
-
-        //System.out.println(prompt);
-        Toast.makeText(getApplicationContext(), prompt, Toast.LENGTH_LONG).show();
-
-        try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("model", "gpt-3.5-turbo"); // our Model Name
-
-            JSONArray jsonArray = new JSONArray();
-            JSONObject jMessage = new JSONObject();
-            jMessage.put("role", "user");
-            jMessage.put("content", prompt);
-            jsonArray.put(jMessage);
-            jsonObject.put("messages", jsonArray);
-
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                    Request.Method.POST,
-                    URL_ENDPOINT,
-                    jsonObject,
-                    response -> {
-                        try {
-                            String responseText = response.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
-                            TextView textView = findViewById(R.id.examTitleTextInput);
-                            textView.setText(responseText);
-                            System.out.println(responseText);
-                            //parseToJSON(responseText);
-                            // The Call for Parsing goes here.
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    },
-                    error -> {
-                        String errorMessage = "Error Detected";
-                        if (error.networkResponse != null && error.networkResponse.data != null) {
-                            try {
-                                String errorString = new String(error.networkResponse.data);
-                                JSONObject errorJSON = new JSONObject(errorString);
-                                errorMessage = errorJSON.optString("error", errorMessage);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
-                        System.out.println(errorMessage);
-                    }
-            ) {
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> headers = new HashMap<>();
-                    headers.put("Authorization", "Bearer " + "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"); // API key
-                    headers.put("Content-Type", "application/json");
-                    return headers;
+                if (title.isEmpty() || textInput.isEmpty()) {
+                    Toast.makeText(GenerativeQuizFromTextInputActivity.this, "Please enter a title and additional text for your quiz.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent generateExam = new Intent(GenerativeQuizFromTextInputActivity.this, GeneratingExamLoader.class);
+                    generateExam.putExtra("EXAM_TITLE", title);
+                    generateExam.putExtra("ADDITIONAL_TEXT", textInput);
+                    startActivity(generateExam);
                 }
-            };
+            }
+        });
 
 
-            int intTimeoutPeriod = 3* (60000); // 60 seconds timeout duration defined
-            RetryPolicy retryPolicy = new DefaultRetryPolicy(intTimeoutPeriod,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-            jsonObjectRequest.setRetryPolicy(retryPolicy);
-            Volley.newRequestQueue(getApplicationContext()).add(jsonObjectRequest);
 
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
     }
+
+    public void test(){
+        String responseText = "What is the main source of light and heat in our solar system?\na. The sun\nb. The moon\nc. The stars\nd. The Earth\n\nHow does the sun provide energy to Earth?\na. Through photosynthesis\nb. Through nuclear fusion\nc. Through burning fossil fuels\nd. Through volcanic activity\n\nIn the morning, the sun appears to rise in the?\na. East\nb. West\nc. North\nd. South\n\nWhat is the distance between the Earth and the sun?\na. 93 million miles\nb. 1 million miles\nc. 500 thousand miles\nd. 10 million miles\n\nHow does the sun affect Earth's weather?\na. By providing warmth and energy\nb. By causing hurricanes and tornadoes\nc. By melting polar ice caps\nd. By creating earthquakes\n\nWhat is the average temperature of the sun's surface?\na. 10,000 degrees Fahrenheit\nb. 100 degrees Fahrenheit\nc. -100 degrees Fahrenheit\nd. 1 million degrees Fahrenheit\n\nIn the sun, nuclear fusion converts hydrogen into what element?\na. Helium\nb. Oxygen\nc. Carbon\nd. Nitrogen\n\nWhat is the lifespan of the sun expected to be?\na. About 5 billion years\nb. About 1 million years\nc. About 100 years\nd. About 50 billion years\n\nWhat is the layer of the sun's atmosphere that gives it a glowing appearance?\na. The photosphere\nb. The corona\nc. The chromosphere\nd. The flaresphere\n\nHow does the sun's gravity affect the planets in our solar system?\na. It keeps them in orbit\nb. It pushes them away\nc. It pulls them towards the Earth\nd. It has no gravitational effect on them"; // Replace with your actual response text
+        List<Question> questionList = new ArrayList<>();
+
+// Split the text into individual questions
+        String[] rawQuestions = responseText.split("\\n\\n");
+
+        int questionId = 1; // Starting ID for questions
+        for (String rawQuestion : rawQuestions) {
+            String[] lines = rawQuestion.split("\\n");
+
+            if (lines.length < 5) continue; // Skip if there are not enough lines for a question and 4 options
+
+            // Extract question and answers
+            String questionText = lines[0];
+            String[] answers = Arrays.copyOfRange(lines, 1, lines.length);
+
+            // Assuming the first option is always the correct one
+            String correctAnswer = answers[0].substring(3); // Skip the option label (e.g., "a. ")
+            List<String> falseAnswers = Arrays.stream(answers, 1, answers.length)
+                    .map(answer -> answer.substring(3))
+                    .collect(Collectors.toList());
+
+            // Create a new Question object
+            Question question = new Question(questionText, correctAnswer,
+                    falseAnswers.get(0), falseAnswers.get(1), falseAnswers.get(2),
+                    questionId++);
+
+            // Add to the list
+            questionList.add(question);
+        }
+
+// Assuming you have an ExamData object
+        ExamData examData = new ExamData();
+        examData.setQuestions(questionList);
+
+// Set name and id for ExamData as required
+
+    }
+
 
 
 

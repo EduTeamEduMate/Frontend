@@ -2,7 +2,10 @@ package com.example.edumate.network;
 
 import com.example.edumate.models.TokenResponse;
 import com.example.edumate.models.User;
+import com.example.edumate.models.ExamData;
 
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -28,4 +31,7 @@ public interface ApiService {
 
     @PUT("/users/password/{user_id}")
     Call<User> updateUserPassword(@Path("user_id") int userId, @Body User updatedUser);
+
+    @POST("/exams")
+    Call<ResponseBody> postExam(@Body RequestBody body);
 }
