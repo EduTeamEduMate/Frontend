@@ -8,10 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.edumate.R;
-import com.example.edumate.views.activitites.IntroActivity;
-import com.example.edumate.views.activitites.OnBoardingKt;
+import com.example.edumate.models.TokenResponse;
+import com.example.edumate.models.User;
+import com.example.edumate.models.SUserData;
+import com.example.edumate.models.UserDataFromLogin;
+import com.example.edumate.network.ApiService;
+import com.example.edumate.network.RetrofitClient;
 import com.example.edumate.views.activitites.mainScreen.MainScreenActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginTabFragment extends Fragment {
 
@@ -30,8 +40,34 @@ public class LoginTabFragment extends Fragment {
             boolean isAllFieldsChecked = CheckAllFields();
 
             if (isAllFieldsChecked) {
-                Intent intent = new Intent(getActivity(), MainScreenActivity.class);
-                startActivity(intent);
+                String email = emailEditText.getText().toString().trim();
+                String password = passwordEditText.getText().toString();
+
+                // Make a network call to login
+                ApiService apiService = RetrofitClient.getApiService();
+                Call<TokenResponse> call = apiService.loginUser(email, password);
+
+                call.enqueue(new Callback<TokenResponse>() {
+                    @Override
+                    public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
+                        if (response.isSuccessful()) {
+                            UserDataFromLogin user = response.body().getUser();
+                            // Save user data
+                            SUserData.getInstance().setUser(user.getName(), user.getEmail(), user.getId());
+                            Intent intent = new Intent(getActivity(), MainScreenActivity.class);
+                            startActivity(intent);
+                        } else {
+                            emailEditText.setText(response.message());
+                            Toast.makeText(getActivity(), "Signup failed: " + response.message(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TokenResponse> call, Throwable t) {
+                        emailEditText.setText(t.getMessage());
+                        Toast.makeText(getActivity(), "Network error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 

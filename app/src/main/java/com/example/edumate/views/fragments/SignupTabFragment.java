@@ -9,11 +9,21 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.edumate.R;
+import com.example.edumate.models.User;
+import com.example.edumate.network.ApiService;
+import com.example.edumate.network.RetrofitClient;
+
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupTabFragment extends Fragment {
 
@@ -42,15 +52,6 @@ public class SignupTabFragment extends Fragment {
         passwordEditText = view.findViewById(R.id.signup_password);
         confirmPasswordEditText = view.findViewById(R.id.signup_confirm);
 
-//        final View rootView = view.findViewById(R.id.signup_root_layout);
-//        rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
-//            int heightDiff = rootView.getRootView().getHeight() - rootView.getHeight();
-//            if (heightDiff > 10) { // arbitrary value, adjust as needed
-//                rootView.setPadding(0, 100, 0, heightDiff);
-//            } else {
-//                rootView.setPadding(0, 100, 0, 0);
-//            }
-//        });
 
         Button signupButton = view.findViewById(R.id.signup_button);
 
@@ -58,7 +59,39 @@ public class SignupTabFragment extends Fragment {
             boolean isAllFieldsChecked = CheckAllFields();
 
             if (isAllFieldsChecked) {
-                listener.onNavigateToLogin();
+                User newUser = new User();
+                newUser.setName(nameEditText.getText().toString().trim());
+                newUser.setEmail(emailEditText.getText().toString().trim());
+                newUser.setPassword(passwordEditText.getText().toString());
+
+                ApiService apiService = RetrofitClient.getApiService();
+                Call<User> call = apiService.createUser(newUser);
+
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if (response.isSuccessful()) {
+                            listener.onNavigateToLogin();
+                        } else  {
+                            String errorMessage = "Unknown error occurred";
+                            try {
+                                if (response.errorBody() != null) {
+                                    String errorBody = response.errorBody().string();
+                                    JSONObject errorJson = new JSONObject(errorBody);
+                                    errorMessage = errorJson.optString("detail", "Unknown error occurred");
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        emailEditText.setText(t.getMessage());
+                        Toast.makeText(getActivity(), "Network error: " + t.getMessage(), Toast.LENGTH_LONG).show();                    }
+                });
             }
         });
 
