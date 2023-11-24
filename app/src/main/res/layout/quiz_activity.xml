@@ -33,24 +33,14 @@
 
 
     <TextView
-        android:id="@+id/testKnowledgeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UI UX Design Quiz"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/quizNameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/quizNameTextView"
-        android:layout_marginTop="8dp"/>
-    <TextView
         android:id="@+id/testKnowledgeTextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get 100 points to pass the test"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/testKnowledgeTextView"
-        app:layout_constraintTop_toBottomOf="@+id/testKnowledgeTextView"
+        app:layout_constraintStart_toStartOf="@+id/quizNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/quizNameTextView"
         android:layout_marginTop="8dp"/>
 
 

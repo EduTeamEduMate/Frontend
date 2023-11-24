@@ -23,6 +23,7 @@ import com.example.edumate.models.Question;
 import com.example.edumate.models.SUserData;
 import com.example.edumate.network.ApiService;
 import com.example.edumate.network.RetrofitClient;
+import com.example.edumate.views.activitites.quizActivities.QuizActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -199,7 +200,12 @@ public class GeneratingExamLoader extends AppCompatActivity {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()) {
                             TextView check = findViewById(R.id.generatingExamTextView);
-                            check.setText("done...");
+                            check.setText("done");
+                            Intent intent = new Intent(GeneratingExamLoader.this, QuizActivity.class);
+                            intent.putExtra("EXAM_DATA", examData);
+                            startActivity(intent);
+                            finish();
+
                         } else {
                             TextView check = findViewById(R.id.generatingExamTextView);
                             check.setText("error...");                        }

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.edumate.R;
 import com.example.edumate.models.SUserData;
 import com.example.edumate.models.User;
@@ -24,6 +26,9 @@ public class ChangeNameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_name);
+
+        ConstraintLayout backButton = findViewById(R.id.username_back_btn);
+        backButton.setOnClickListener(v -> finish());
 
         oldNameEditText = findViewById(R.id.old_name);
         newNameEditText = findViewById(R.id.new_name);

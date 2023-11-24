@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.edumate.R;
 import com.example.edumate.models.SUserData;
 import com.example.edumate.models.User;
@@ -29,6 +31,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         confirmNewPasswordEditText = findViewById(R.id.confirm_new_password);
 
         Button changePasswordButton = findViewById(R.id.change_password_button);
+
+        ConstraintLayout backButton = findViewById(R.id.password_back_btn);
+        backButton.setOnClickListener(v -> finish());
 
         changePasswordButton.setOnClickListener(v -> {
             boolean isAllFieldsChecked = checkAllFields();

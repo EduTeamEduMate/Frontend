@@ -108,6 +108,15 @@
             app:layout_constraintEnd_toStartOf="@id/submitButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/submitButton" />
+        <View
+            android:id="@+id/submitButtonPlaceholder"
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="10dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="@+id/submitButton"
+            app:layout_constraintBottom_toBottomOf="@+id/submitButton"/>
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submitButton"
@@ -119,10 +128,7 @@
             android:text="Submit Quiz"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/rightNavButton"
@@ -134,6 +140,7 @@
             app:layout_constraintStart_toEndOf="@id/submitButton"
             app:layout_constraintTop_toTopOf="@+id/submitButton"
             app:layout_constraintVertical_bias="0.0" />
+
     </LinearLayout>
 
 

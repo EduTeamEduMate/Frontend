@@ -56,6 +56,8 @@ public class QuizActivity extends AppCompatActivity implements QuestionFragment.
         ExamData examData = (ExamData) getIntent().getSerializableExtra("EXAM_DATA");
         if (examData != null) {
             this.questions = examData.getQuestions();
+            TextView examNameTextView = findViewById(R.id.quizName);
+            examNameTextView.setText(examData.getName());
             userAnswers = new String[questions.size()];
             Arrays.fill(userAnswers, null);
             answersSelected = new boolean[questions.size()];
@@ -149,13 +151,16 @@ public class QuizActivity extends AppCompatActivity implements QuestionFragment.
 
 
     private void updateSubmitButtonState() {
+        View submitButtonPlaceholder = findViewById(R.id.submitButtonPlaceholder);
         for (String answer : userAnswers) {
             if (answer == null) {
-                submitButton.setVisibility(View.GONE); // Hide button if any question is unanswered
+                submitButton.setVisibility(View.GONE);
+                submitButtonPlaceholder.setVisibility(View.VISIBLE);
                 return;
             }
         }
-        submitButton.setVisibility(View.VISIBLE); // Show button if all questions are answered
+        submitButton.setVisibility(View.VISIBLE);
+        submitButtonPlaceholder.setVisibility(View.GONE);
     }
 
 

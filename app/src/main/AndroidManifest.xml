@@ -7,7 +7,7 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EduMate"
         tools:targetApi="31">
+        <activity
+            android:name=".LoadingIImageGeneration"
+            android:exported="false" />
         <activity
             android:name=".views.activitites.GeneratingExamLoader"
             android:exported="false" />
@@ -58,7 +61,7 @@
         <activity android:name=".views.activitites.mainScreen.GenerativeQuizFromTextInputActivity" />
         <activity
             android:name=".views.activitites.IntroActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".views.activitites.ChangePasswordActivity"
             android:exported="true">
@@ -68,8 +71,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.activitites.ChangeNameActivity"></activity>
-        <activity android:name=".views.activitites.OurTeam"></activity>
+        <activity android:name=".views.activitites.ChangeNameActivity" />
+        <activity android:name=".views.activitites.OurTeam" />
         <activity
             android:name=".views.activitites.ProfileActivity"
             android:exported="false" />
@@ -79,7 +82,7 @@
         <activity android:name=".views.activitites.QuizInfoActivity" />
         <activity android:name=".views.activitites.quizActivities.ResultsActivity" />
         <activity android:name=".views.activitites.quizActivities.QuizActivity" />
-        <activity android:name=".views.activitites.LoadingActivity"/>
+        <activity android:name=".views.activitites.LoadingActivity" />
     </application>
 
 </manifest>
